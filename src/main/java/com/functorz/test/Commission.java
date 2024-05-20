@@ -1,7 +1,24 @@
-convert jpa entity to psql
+package com.functorz.test;
 
-test case
-```java
+import io.leangen.graphql.annotations.GraphQLIgnore;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -39,21 +56,3 @@ public class Commission {
   @UpdateTimestamp
   private OffsetDateTime updatedAt;
 }
-```
-
-convert to:
-```sql
-CREATE TABLE IF NOT EXISTS commission (
-     id BIGINT,
-     order_id BIGINT NOT NULL,
-     commission_account_id BIGINT NOT NULL,
-     commission_amount NUMERIC NOT NULL,
-     status TEXT,
-     error_message TEXT,
-     created_at TIMESTAMP WITH TIMEZONE NOT NULL,
-     updated_at TIMESTAMP WITH TIMEZONE,
-     CONSTRAINT pk_commission PRIMARY KEY (id)
-);
-
-CREATE SEQUENCE IF NOT EXISTS commission_pk_seq START WITH 8360000000000001 INCREMENT BY 1 NO MINVALUE NO MAXVALUE CACHE 1;
-```
