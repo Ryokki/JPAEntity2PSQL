@@ -1,0 +1,11 @@
+/build
+.env
+/bin
+/out
+/.idea
+/.vscode
+/.gradle
+/.project
+.gradle/*
+.idea
+/src/main/generated/*

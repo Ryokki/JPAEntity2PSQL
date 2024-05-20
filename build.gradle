@@ -1,0 +1,88 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.5'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id "org.jetbrains.kotlin.jvm" version '1.7.10'
+    id 'java'
+    id 'com.diffplug.spotless' version '6.3.0'
+}
+
+group 'com.functorz'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.hashids:hashids:1.0.3'
+    implementation 'com.impossibl.pgjdbc-ng:pgjdbc-ng:0.8.6'
+    implementation 'com.vladmihalcea:hibernate-types-52:2.12.0'
+    implementation 'io.github.cdimascio:java-dotenv:5.1.3'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.7.4'
+    implementation 'io.micrometer:micrometer-core:1.5.1'
+    implementation 'io.leangen.graphql:spqr:0.11.0'
+    implementation 'com.google.guava:guava:27.0-jre'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.9.0'
+    implementation 'org.apache.commons:commons-lang3:3.8.1'
+    implementation 'org.apache.commons:commons-pool2:2.8.0'
+    implementation 'org.jooq:jooq:3.14.3'
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.0'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    implementation 'org.glassfish.jersey.containers:jersey-container-servlet:2.25.1'
+    implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:2.22.1'
+    implementation 'org.glassfish.jersey.inject:jersey-hk2:2.30.1'
+    implementation 'org.glassfish.jersey.media:jersey-media-multipart:2.35'
+    implementation 'de.dentrassi.crypto:pem-keystore:2.2.0'
+
+
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.hibernate:hibernate-jpamodelgen'
+
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.hibernate:hibernate-jpamodelgen'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+spotless {
+    java {
+        target 'src/**/*.java'
+        importOrder('java', 'javax', 'com.functorz')
+        removeUnusedImports()
+        googleJavaFormat('1.13.0')
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
