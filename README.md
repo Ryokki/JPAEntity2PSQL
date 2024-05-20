@@ -1,6 +1,6 @@
-convert jpa entity to psql
+**This is a tiny tool to convert jpa entity to psql, for saving my time.**
 
-test case
+Test case
 ```java
 @Entity
 @Data
@@ -41,7 +41,7 @@ public class Commission {
 }
 ```
 
-convert to:
+Convert to:
 ```sql
 CREATE TABLE IF NOT EXISTS commission (
      id BIGINT,
