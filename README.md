@@ -1,5 +1,8 @@
 **This is a tiny tool to convert jpa entity to psql, for saving my time.**
 
+TODO:
+- [ ] build intellij plugin
+
 Test case
 ```java
 @Entity
